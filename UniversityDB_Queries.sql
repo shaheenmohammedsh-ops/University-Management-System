@@ -1,19 +1,19 @@
--- 1-عرض بيانات الطلاب 
+-- 1. View Student Records
 
 SELECT StudentID, FirstName, LastName, Email, EnrollmentYear, DeptID
 FROM STUDENT;
 -----------------------------------------------------------------------
---2-عرض جميع الكورسات بالتفاصيل 
+-- 2. View All Course Details 
 
 SELECT CourseCode, CourseTitle, Credits, DeptID, InstructorID
 FROM COURSE;
 -----------------------------------------------------------------------
--- 3-تسجيل طالب في كورس 
+-- 3. Register Student in Course 
 
 INSERT INTO REGISTRATION (Semester, Grade, StudentID, CourseCode)
 VALUES ('Spring 2025', NULL, 1, '022400202');
 -----------------------------------------------------------------------
---4-عرض الكورسات المسجل بها طالب معين 
+-- 4. View Courses Registered by a Specific Student 
 
 SELECT 
     R.RegistrationID,
@@ -24,7 +24,7 @@ FROM REGISTRATION R
 JOIN COURSE C ON R.CourseCode = C.CourseCode
 WHERE R.StudentID = 1;
 -----------------------------------------------------------------------
---5-عرض الطلاب المسجلين في كورس معين
+-- 5. View Students Registered in a Specific Course
 
 SELECT 
     S.StudentID,
@@ -36,18 +36,18 @@ FROM REGISTRATION R
 JOIN STUDENT S ON R.StudentID = S.StudentID
 WHERE R.CourseCode = '022400202';
 -----------------------------------------------------------------------
---6-إدخال درجات الطلاب 
+-- 6. Input Student Grades 
 
 UPDATE REGISTRATION
 SET Grade = 'A'
 WHERE RegistrationID = 1;
 -----------------------------------------------------------------------
---7-إضافة كورس جديد 
+-- 7. Add New Course 
 
 INSERT INTO COURSE (CourseCode, CourseTitle, Credits, Description, DeptID, InstructorID)
 VALUES ('022400300', 'Data Mining', 3, 'Mining big datasets.', '01', 2);
 -----------------------------------------------------------------------
---8-عرض كل مدرس والكورسات التي يدرسها 
+-- 8. View Instructors and Their Assigned Courses 
 
 SELECT 
     I.InstructorID,
@@ -57,13 +57,13 @@ SELECT
 FROM INSTRUCTOR I
 LEFT JOIN COURSE C ON I.InstructorID = C.InstructorID;
 -----------------------------------------------------------------------
---9-عدد الطلاب في كل قسم 
+-- 9. Student Count per Department 
 
 SELECT DeptID, COUNT(*) AS NumberOfStudents
 FROM STUDENT
 GROUP BY DeptID;
 -----------------------------------------------------------------------
---10-حذف تسجيل طالب 
+-- 10. Delete Student Registration 
 
 DELETE FROM REGISTRATION
 WHERE RegistrationID = 2;
