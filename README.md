@@ -163,7 +163,13 @@ conn.close()
 ## Visualizations & User Interface
 
 ### 1. System Dashboard
+
+<div align="center">
+
 ![Dashboard](images/1.png)
+
+</div>
+
 *Real-time KPI metrics displaying total students, active courses, faculty members, and departments with recent enrollment activity tracking. Features live metrics, activity feeds, and system overview.*
 
 ---
@@ -171,15 +177,33 @@ conn.close()
 ### 2. Student Management Module
 
 #### 2.1 Register New Student
+
+<div align="center">
+
 ![Register Student](images/2.png)
+
+</div>
+
 *Form-based interface for adding new students with fields for personal information, contact details, date of birth, enrollment year, and department assignment. Includes validation and auto-clearing form.*
 
 #### 2.2 Edit or Delete Student Data
+
+<div align="center">
+
 ![Edit Delete Student](images/3.png)
+
+</div>
+
 *Comprehensive interface for updating existing student records including personal details and phone information, with permanent deletion capability for legacy records. Features safe delete confirmation.*
 
 #### 2.3 View All Students Directory
+
+<div align="center">
+
 ![View All Students](images/4.png)
+
+</div>
+
 *Tabular display of complete student database with all demographic information, enrollment details, and department assignments in a sortable, interactive data grid.*
 
 ---
@@ -187,15 +211,33 @@ conn.close()
 ### 3. Course Management Module
 
 #### 3.1 Add New Course
+
+<div align="center">
+
 ![Add New Course](images/5.png)
+
+</div>
+
 *Form interface for creating new courses with course code, title, credit hours validation (1-6), description, department, and instructor assignment. Includes dropdown selection for related entities.*
 
 #### 3.2 Edit or Delete Course Data
+
+<div align="center">
+
 ![Edit Delete Course](images/6.png)
+
+</div>
+
 *Interface for modifying course information including title, credits, and description, with permanent deletion capability for unused courses. Features bulk operations support.*
 
 #### 3.3 View All Available Courses
+
+<div align="center">
+
 ![View All Courses](images/7.png)
+
+</div>
+
 *Course catalog display showing complete course offerings with course codes, titles, credit hours, departments, and assigned instructors. Includes filtering and search capabilities.*
 
 ---
@@ -203,11 +245,23 @@ conn.close()
 ### 4. Enrollment Management Module
 
 #### 4.1 Register Student in Course
+
+<div align="center">
+
 ![Register in Course](images/9.png)
+
+</div>
+
 *Dropdown-based interface for enrolling students in courses with duplicate enrollment prevention and automatic semester tracking. Includes validation for prerequisite checks.*
 
 #### 4.2 Drop Student from Course
+
+<div align="center">
+
 ![Drop from Course](images/8.png)
+
+</div>
+
 *Student-specific interface displaying active course enrollments with selective course removal capability and immediate database updates. Features confirmation dialogs for data safety.*
 
 ---
@@ -215,20 +269,42 @@ conn.close()
 ### 5. Query & Administration
 
 #### 5.1 SQL Query Execution Interface
+
+<div align="center">
+
 ![Query Execution](images/10.png)
+
+</div>
+
 *Direct SQL interface with pre-built templates for SELECT, INSERT, UPDATE, and DELETE operations, supporting custom query input and result visualization with row-impact reporting.*
 
 ---
 
 ### 6. Database Architecture & Design
 
+---
+
 #### 6.1 Database Schema Structure
+
+<div align="center">
+
 ![Database Schema](images/11.png)
-*Visual representation of the complete database schema showing all five tables: DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION with their column definitions and data types.*
+
+</div>
+
+**Description:** Visual representation of the complete database schema showing all five tables: DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION with their column definitions and data types.
+
+---
 
 #### 6.2 Entity-Relationship Diagram (ERD)
+
+<div align="center">
+
 ![ERD Diagram](images/12.png)
-*Complete ERD illustrating relationships between DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION tables with cardinality notation and referential integrity constraints including CASCADE and SET NULL rules.*
+
+</div>
+
+**Description:** Complete ERD illustrating relationships between DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION tables with cardinality notation and referential integrity constraints including CASCADE and SET NULL rules.
 
 ---
 
