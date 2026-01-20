@@ -156,35 +156,71 @@ conn.close()
 
 ---
 
-## Visualizations & Interface
+## Visualizations & User Interface
 
-### Dashboard Overview
+### System Dashboard
 ![Dashboard](images/1.png)
-*Real-time KPI metrics and enrollment activity tracking*
+*Real-time KPI metrics displaying total students, active courses, faculty members, and departments with recent enrollment activity tracking*
 
-### Student Management Module
-![Student Management](images/2.png)
-*Comprehensive CRUD operations with form validation*
+---
 
-### Course Catalog Interface
-![Course Catalog](images/3.png)
-*Department-mapped course listings with instructor assignments*
+### Student Management - Registration
+
+#### Register New Student
+![Register Student](images/2.png)
+*Form-based interface for adding new students with fields for personal information, contact details, date of birth, enrollment year, and department assignment*
+
+#### Edit or Delete Student Data
+![Edit Delete Student](images/3.png)
+*Comprehensive interface for updating existing student records including personal details and phone information, with permanent deletion capability for legacy records*
+
+#### View All Students Directory
+![View All Students](images/4.png)
+*Tabular display of complete student database with all demographic information, enrollment details, and department assignments in a sortable data grid*
+
+---
+
+### Course Management Operations
+
+#### Add New Course
+![Add New Course](images/5.png)
+*Form interface for creating new courses with course code, title, credit hours validation (1-6), description, department, and instructor assignment*
+
+#### Edit or Delete Course Data
+![Edit Delete Course](images/6.png)
+*Interface for modifying course information including title, credits, and description, with permanent deletion capability for unused courses*
+
+#### View All Available Courses
+![View All Courses](images/7.png)
+*Course catalog display showing complete course offerings with course codes, titles, credit hours, departments, and assigned instructors*
+
+---
 
 ### Enrollment Management
-![Enrollment](images/4.png)
-*Streamlined course registration with duplicate prevention*
 
-### SQL Query Execution
-![SQL Execution](images/5.png)
-*Direct database access with result visualization and audit trails*
+#### Register Student in Course
+![Register in Course](images/9.png)
+*Dropdown-based interface for enrolling students in courses with duplicate enrollment prevention and automatic semester tracking*
 
-### Database Schema Diagram
-![Schema](images/6.png)
-*Normalized relational design with referential integrity constraints*
+#### Drop Student from Course
+![Drop from Course](images/8.png)
+*Student-specific interface displaying active course enrollments with selective course removal capability and immediate database updates*
 
-### Dynamic Workflow Animation
-![Workflow GIF](images/workflow.gif)
-*Complete end-to-end student registration workflow demonstration*
+---
+
+### Database & Query Operations
+
+#### SQL Query Execution Interface
+![Query Execution](images/10.png)
+*Direct SQL interface with pre-built templates for SELECT, INSERT, UPDATE, and DELETE operations, supporting custom query input and result visualization with row-impact reporting*
+
+#### Database Schema Structure
+![Database Schema](images/11.png)
+*Visual representation of the complete database schema showing all five tables: DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION with their column definitions*
+
+#### Entity-Relationship Diagram
+![ERD Diagram](images/12.png)
+*Complete ERD illustrating relationships between DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION tables with cardinality notation and referential integrity constraints*
 
 ---
 
