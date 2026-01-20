@@ -42,3 +42,4 @@ INSERT INTO REGISTRATION (Semester, Grade, StudentID, CourseCode) VALUES
 ('Spring 2025', NULL, 2, '022400109'), -- Sara takes AI
 ('Spring 2025', NULL, 2, '022400105'), -- Sara takes Programming
 ('Fall 2024', 'A', 3, '022406201');    -- Kareem takes CyberSec
+
