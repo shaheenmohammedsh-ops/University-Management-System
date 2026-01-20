@@ -5,10 +5,10 @@ CREATE DATABASE UniversityDB;
 USE UniversityDB;
 
 -- ==========================================================
--- 2. DDL: Create Tables (بناء الجداول)
+-- 2. DDL: Create Tables
 -- ==========================================================
 
--- ملاحظة هامة: يجب إنشاء الجداول بهذا الترتيب لتجنب أخطاء الـ Foreign Keys
+-- Important Note: Tables must be created in this order to avoid Foreign Key errors
 
 -- Table 1: DEPARTMENT (Parent Table)
 CREATE TABLE DEPARTMENT (
