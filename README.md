@@ -1,22 +1,4 @@
-<style>
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-.fade-in { animation: fadeIn 1s ease-out; }
-.slide-in { animation: slideIn 0.8s ease-out; }
-.pulse { animation: pulse 2s infinite; }
-</style>
 
-<div align="center" class="fade-in">
 
 # <span class="pulse">University Management System</span>
 
@@ -1152,3 +1134,4 @@ For questions, issues, or contributions:
 [Back to Top](#-university-management-system)
 
 </div>
+
