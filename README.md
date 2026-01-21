@@ -1,60 +1,67 @@
+<div align="center">
+
 # University Management System
 
-**University management system with relational database (MySQL), full CRUD operations for students/courses/enrollments, Streamlit dashboard with role-based modules, referential integrity constraints, and direct SQL execution for academic institution workflows.**
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?style=for-the-badge&logo=streamlit)](https://streamlit.io)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange?style=for-the-badge&logo=mysql)](https://mysql.com)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
 
-## Status & Tech Stack
+## Academic Database Management Platform
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.0%2B-red?style=flat-square&logo=streamlit)
-![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-orange?style=flat-square&logo=mysql)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat-square)
+A comprehensive web-based system for managing university operations with MySQL database backend and Streamlit frontend interface.
 
-![Code Quality](https://img.shields.io/badge/Code%20Quality-Professional-blue?style=flat-square)
-![Tested](https://img.shields.io/badge/Tested-Yes-success?style=flat-square)
-![Documentation](https://img.shields.io/badge/Documentation-Complete-informational?style=flat-square)
-
----
-
-## Overview
-
-This project delivers an enterprise-grade academic management platform for higher education institutions, enabling comprehensive lifecycle management of students, courses, and enrollment operations through an intuitive web interface and direct database access. The system enforces referential integrity across normalized relational schemas, implements transactional consistency via InnoDB, and provides role-based access to critical administrative workflows. Designed for registrar offices, department administrators, and faculty management, it combines production-grade database architecture with accessibility through a modern data visualization framework.
+</div>
 
 ---
 
 ## Key Features
 
-| Feature | Technology | Description |
-|---------|-----------|-------------|
-| **Student Management** | Python/Streamlit | Full CRUD operations: register new students, update profiles, view directory, handle deletions with referential integrity |
-| **Course Catalog** | MySQL/InnoDB | Create and manage courses with instructor assignments, department mapping, credit validation (1-6 credits) |
-| **Enrollment Operations** | Transactions | Register/drop student courses with duplicate enrollment prevention and semester tracking |
-| **Executive Dashboard** | Pandas/DataFrames | Real-time KPI metrics (student count, active courses, faculty members, departments) with recent activity logs |
-| **Advanced Querying** | Dynamic SQL | Direct SQL interface supporting SELECT, INSERT, UPDATE, DELETE with transactional commits and row-impact reporting |
-| **Data Integrity** | Constraints | Cascading delete rules, foreign key constraints, timestamp auditing, and validation checks |
+| Module | Functionality | Technology |
+|--------|---------------|------------|
+| **Student Management** | Registration, profile updates, directory view | Streamlit Forms |
+| **Course Catalog** | Course creation, instructor assignment, credit validation | MySQL Tables |
+| **Enrollment System** | Course registration, drop operations, semester tracking | SQL Transactions |
+| **Dashboard Analytics** | Real-time metrics, activity monitoring | Pandas DataFrames |
+| **Query Interface** | Direct SQL execution with templates | MySQL Connector |
 
 ---
 
-## Technical Architecture
+## System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    STREAMLIT WEB INTERFACE                  │
-│  Dashboard | Student Mgmt | Course Mgmt | Enrollment | SQL  │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                    Python MySQL Connector
-                              │
-┌─────────────────────────────┴───────────────────────────────┐
-│                    MySQL RELATIONAL DATABASE                │
-├─────────────────────────────────────────────────────────────┤
-│ DEPARTMENT → INSTRUCTOR ← COURSE                            │
-│    ↓              ↓           ↓                             │
-│  STUDENT ────────────→ REGISTRATION ←────────────┘         │
-│  (Normalized Schema | Foreign Keys | Constraints)          │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    A[Streamlit Web Interface] --> B[Python Backend]
+    B --> C[MySQL Database]
+    
+    subgraph "Frontend Layer"
+        A1[Dashboard]
+        A2[Student Management]
+        A3[Course Management]
+        A4[Enrollment]
+        A5[SQL Query]
+    end
+    
+    subgraph "Database Layer"
+        C1[DEPARTMENT]
+        C2[INSTRUCTOR]
+        C3[STUDENT]
+        C4[COURSE]
+        C5[REGISTRATION]
+    end
+    
+    A --> A1
+    A --> A2
+    A --> A3
+    A --> A4
+    A --> A5
+    C --> C1
+    C --> C2
+    C --> C3
+    C --> C4
+    C --> C5
 ```
 
 **Data Flow:**
@@ -69,40 +76,58 @@ This project delivers an enterprise-grade academic management platform for highe
 - MySQL Server 8.0+
 - pip package manager
 
-### Step 1: Clone & Install Dependencies
+### Step 1: Clone Repository
 ```bash
-# Clone repository
-git clone <repository-url>
+git clone https://github.com/shaheenmohammedsh-ops/University-Management-System.git
 cd DB_Project_Code
-
-# Install required packages
-pip install streamlit mysql-connector-python pandas
 ```
 
-### Step 2: Configure Database
+### Step 2: Environment Setup
 ```bash
-# Open MySQL and execute schema
-mysql -u root -p < UniversityDB_Schema.sql
-mysql -u root -p < UniversityDB_Data.sql
+# Create virtual environment
+python -m venv venv
+
+# Activate environment
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-### Step 3: Update Database Credentials
-Edit `app.py` line 64:
+### Step 3: Database Configuration
+```bash
+# Launch MySQL shell
+mysql -u root -p
+
+# Create database
+CREATE DATABASE UniversityDB;
+
+# Import schema and data
+mysql -u root -p UniversityDB < UniversityDB_Schema.sql
+mysql -u root -p UniversityDB < UniversityDB_Data.sql
+```
+
+### Step 4: Application Configuration
+Edit `app.py` and update database credentials:
 ```python
+# Line 64 - Update connection parameters
 return mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="your_password",  # ← Update here
+    user="your_username",
+    password="your_password",
     database="UniversityDB"
 )
 ```
 
-### Step 4: Launch Application
+### Step 5: Launch Application
 ```bash
 streamlit run app.py
 ```
 
-Access the application at: **http://localhost:8501**
+**Access URL:** http://localhost:8501
 
 ---
 
@@ -160,196 +185,183 @@ conn.close()
 
 ---
 
-## Visualizations & User Interface
+## User Interface Gallery
 
-### 1. System Dashboard
-
+### System Dashboard
 <div align="center">
-
-![Dashboard](images/1.png)
-
+<img src="images/1.png" alt="Dashboard Interface" width="800">
 </div>
 
-*Real-time KPI metrics displaying total students, active courses, faculty members, and departments with recent enrollment activity tracking. Features live metrics, activity feeds, and system overview.*
+*Real-time metrics display with student count, active courses, faculty members, and recent enrollment activities.*
 
 ---
 
-### 2. Student Management Module
+### Student Management
 
-#### 2.1 Register New Student
-
+#### Registration Interface
 <div align="center">
-
-![Register Student](images/2.png)
-
+<img src="images/2.png" alt="Student Registration" width="800">
 </div>
 
-*Form-based interface for adding new students with fields for personal information, contact details, date of birth, enrollment year, and department assignment. Includes validation and auto-clearing form.*
+*Comprehensive form for new student registration with validation and auto-clearing functionality.*
 
-#### 2.2 Edit or Delete Student Data
-
+#### Record Management
 <div align="center">
-
-![Edit Delete Student](images/3.png)
-
+<img src="images/3.png" alt="Student Management" width="800">
 </div>
 
-*Comprehensive interface for updating existing student records including personal details and phone information, with permanent deletion capability for legacy records. Features safe delete confirmation.*
+*Edit and delete operations with confirmation dialogs and data integrity checks.*
 
-#### 2.3 View All Students Directory
-
+#### Student Directory
 <div align="center">
-
-![View All Students](images/4.png)
-
+<img src="images/4.png" alt="Student Directory" width="800">
 </div>
 
-*Tabular display of complete student database with all demographic information, enrollment details, and department assignments in a sortable, interactive data grid.*
+*Complete student database view with sortable columns and search capabilities.*
 
 ---
 
-### 3. Course Management Module
+### Course Management
 
-#### 3.1 Add New Course
-
+#### Course Creation
 <div align="center">
-
-![Add New Course](images/5.png)
-
+<img src="images/5.png" alt="Course Creation" width="800">
 </div>
 
-*Form interface for creating new courses with course code, title, credit hours validation (1-6), description, department, and instructor assignment. Includes dropdown selection for related entities.*
+*Form interface for adding new courses with department and instructor assignments.*
 
-#### 3.2 Edit or Delete Course Data
-
+#### Course Administration
 <div align="center">
-
-![Edit Delete Course](images/6.png)
-
+<img src="images/6.png" alt="Course Administration" width="800">
 </div>
 
-*Interface for modifying course information including title, credits, and description, with permanent deletion capability for unused courses. Features bulk operations support.*
+*Edit and delete course information with bulk operations support.*
 
-#### 3.3 View All Available Courses
-
+#### Course Catalog
 <div align="center">
-
-![View All Courses](images/7.png)
-
+<img src="images/7.png" alt="Course Catalog" width="800">
 </div>
 
-*Course catalog display showing complete course offerings with course codes, titles, credit hours, departments, and assigned instructors. Includes filtering and search capabilities.*
+*Complete course listing with filtering and search functionality.*
 
 ---
 
-### 4. Enrollment Management Module
+### Enrollment Operations
 
-#### 4.1 Register Student in Course
-
+#### Course Registration
 <div align="center">
-
-![Register in Course](images/9.png)
-
+<img src="images/9.png" alt="Course Registration" width="800">
 </div>
 
-*Dropdown-based interface for enrolling students in courses with duplicate enrollment prevention and automatic semester tracking. Includes validation for prerequisite checks.*
+*Student enrollment interface with duplicate prevention and validation.*
 
-#### 4.2 Drop Student from Course
-
+#### Course Withdrawal
 <div align="center">
-
-![Drop from Course](images/8.png)
-
+<img src="images/8.png" alt="Course Withdrawal" width="800">
 </div>
 
-*Student-specific interface displaying active course enrollments with selective course removal capability and immediate database updates. Features confirmation dialogs for data safety.*
+*Drop course functionality with immediate database updates.*
 
 ---
 
-### 5. Query & Administration
-
-#### 5.1 SQL Query Execution Interface
+### Database Query Interface
 
 <div align="center">
-
-![Query Execution](images/10.png)
-
+<img src="images/10.png" alt="Query Interface" width="800">
 </div>
 
-*Direct SQL interface with pre-built templates for SELECT, INSERT, UPDATE, and DELETE operations, supporting custom query input and result visualization with row-impact reporting.*
-
----
-
-### 6. Database Architecture & Design
-
----
-
-#### 6.1 Database Schema Structure
-
-<div align="center">
-
-![Database Schema](images/11.png)
-
-</div>
-
-**Description:** Visual representation of the complete database schema showing all five tables: DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION with their column definitions and data types.
-
----
-
-#### 6.2 Entity-Relationship Diagram (ERD)
-
-<div align="center">
-
-![ERD Diagram](images/12.png)
-
-</div>
-
-**Description:** Complete ERD illustrating relationships between DEPARTMENT, INSTRUCTOR, STUDENT, COURSE, and REGISTRATION tables with cardinality notation and referential integrity constraints including CASCADE and SET NULL rules.
+*Direct SQL execution with pre-built templates and result visualization.*
 
 ---
 
 ## Database Schema
 
-### Core Components Architecture
+### Entity Relationship Diagram
+<div align="center">
+<img src="images/12.jpeg" alt="ERD Diagram" width="800">
+</div>
 
-#### Table Structure Overview
+### Schema Structure
+<div align="center">
+<img src="images/11.jpeg" alt="Database Schema" width="800">
+</div>
 
+---
+
+## Database Design
+
+### Table Architecture
+
+#### DEPARTMENT Table
+```sql
+CREATE TABLE DEPARTMENT (
+    DeptID VARCHAR(10) PRIMARY KEY,
+    DeptName VARCHAR(100) UNIQUE NOT NULL,
+    BuildingLocation VARCHAR(50)
+);
 ```
-DEPARTMENT (6 Records)
-├─ DeptID (VARCHAR-PK)
-├─ DeptName (VARCHAR-UNIQUE)
-└─ BuildingLocation (VARCHAR)
 
-INSTRUCTOR (4 Records)
-├─ InstructorID (INT-PK-AUTO)
-├─ FirstName, LastName (VARCHAR)
-├─ Email (VARCHAR-UNIQUE)
-├─ HireDate (DATE)
-└─ DeptID (FK→DEPARTMENT)
+#### INSTRUCTOR Table
+```sql
+CREATE TABLE INSTRUCTOR (
+    InstructorID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    HireDate DATE,
+    DeptID VARCHAR(10),
+    FOREIGN KEY (DeptID) REFERENCES DEPARTMENT(DeptID)
+        ON DELETE SET NULL
+);
+```
 
-STUDENT (3+ Records)
-├─ StudentID (INT-PK-AUTO)
-├─ FirstName, LastName (VARCHAR)
-├─ Email (VARCHAR-UNIQUE)
-├─ Phone, DateOfBirth (VARCHAR/DATE)
-├─ EnrollmentYear (INT)
-└─ DeptID (FK→DEPARTMENT)
+#### STUDENT Table
+```sql
+CREATE TABLE STUDENT (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(20),
+    DateOfBirth DATE,
+    EnrollmentYear INT,
+    DeptID VARCHAR(10),
+    FOREIGN KEY (DeptID) REFERENCES DEPARTMENT(DeptID)
+        ON DELETE SET NULL
+);
+```
 
-COURSE (7+ Records)
-├─ CourseCode (VARCHAR-PK)
-├─ CourseTitle (VARCHAR)
-├─ Credits (INT-CHECK: 1-6)
-├─ Description (TEXT)
-├─ DeptID (FK→DEPARTMENT)
-└─ InstructorID (FK→INSTRUCTOR)
+#### COURSE Table
+```sql
+CREATE TABLE COURSE (
+    CourseCode VARCHAR(10) PRIMARY KEY,
+    CourseTitle VARCHAR(100) NOT NULL,
+    Credits INT CHECK (Credits BETWEEN 1 AND 6),
+    Description TEXT,
+    DeptID VARCHAR(10),
+    InstructorID INT,
+    FOREIGN KEY (DeptID) REFERENCES DEPARTMENT(DeptID)
+        ON DELETE SET NULL,
+    FOREIGN KEY (InstructorID) REFERENCES INSTRUCTOR(InstructorID)
+        ON DELETE SET NULL
+);
+```
 
-REGISTRATION (Associative Entity)
-├─ RegistrationID (INT-PK-AUTO)
-├─ Semester (VARCHAR)
-├─ Grade (CHAR)
-├─ RegistrationDate (DATETIME-AUTO)
-├─ StudentID (FK→STUDENT-CASCADE)
-└─ CourseCode (FK→COURSE-CASCADE)
+#### REGISTRATION Table
+```sql
+CREATE TABLE REGISTRATION (
+    RegistrationID INT AUTO_INCREMENT PRIMARY KEY,
+    Semester VARCHAR(20) NOT NULL,
+    Grade CHAR(2),
+    RegistrationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    StudentID INT,
+    CourseCode VARCHAR(10),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (CourseCode) REFERENCES COURSE(CourseCode)
+        ON DELETE CASCADE,
+    UNIQUE (StudentID, CourseCode, Semester)
+);
 ```
 
 ### Relationships & Constraints
@@ -374,85 +386,198 @@ REGISTRATION (Associative Entity)
 
 ---
 
-## Contributing
+## Technical Specifications
 
-Contributions are welcome! Please follow these guidelines:
+### System Requirements
+- **Operating System:** Windows 10+, macOS 10.14+, Ubuntu 18.04+
+- **Python Version:** 3.8 or higher
+- **MySQL Version:** 8.0 or higher
+- **Memory:** Minimum 4GB RAM
+- **Storage:** 500MB available space
 
+### Performance Features
+- **Transaction Safety:** ACID compliance with InnoDB engine
+- **Data Integrity:** Foreign key constraints and validation rules
+- **Duplicate Prevention:** Unique constraints on critical fields
+- **Audit Trail:** Automatic timestamp tracking
+
+### Security Considerations
+- **Input Validation:** Form sanitization and SQL injection prevention
+- **Data Protection:** Referential integrity enforcement
+- **Access Control:** Connection-based authentication
+
+---
+
+## Usage Examples
+
+### Programmatic Student Registration
+```python
+import mysql.connector
+import pandas as pd
+
+# Database connection
+conn = mysql.connector.connect(
+    host="localhost",
+    user="your_username",
+    password="your_password",
+    database="UniversityDB"
+)
+
+# Register new student
+cursor = conn.cursor()
+student_data = (
+    "John", "Doe", "john.doe@university.edu",
+    "555-0123", "2000-01-15", 2023, "CS"
+)
+
+cursor.execute("""
+    INSERT INTO STUDENT (FirstName, LastName, Email, Phone, DateOfBirth, EnrollmentYear, DeptID)
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
+""", student_data)
+
+conn.commit()
+print(f"Student registered with ID: {cursor.lastrowid}")
+conn.close()
+```
+
+### Advanced Query Example
+```python
+# Get enrollment statistics
+query = """
+SELECT 
+    d.DeptName,
+    COUNT(DISTINCT s.StudentID) as StudentCount,
+    COUNT(DISTINCT c.CourseCode) as CourseCount,
+    COUNT(r.RegistrationID) as TotalEnrollments
+FROM DEPARTMENT d
+LEFT JOIN STUDENT s ON d.DeptID = s.DeptID
+LEFT JOIN COURSE c ON d.DeptID = c.DeptID
+LEFT JOIN REGISTRATION r ON c.CourseCode = r.CourseCode
+GROUP BY d.DeptID, d.DeptName
+ORDER BY TotalEnrollments DESC;
+"""
+
+df = pd.read_sql(query, conn)
+print(df)
+```
+
+---
+
+## Development Workflow
+
+### Project Structure
+```
+DB_Project_Code/
+├── app.py                 # Main Streamlit application
+├── requirements.txt       # Python dependencies
+├── UniversityDB_Schema.sql # Database schema
+├── UniversityDB_Data.sql   # Sample data
+├── UniversityDB_Queries.sql # Pre-built queries
+├── images/               # UI screenshots
+│   ├── 1.png            # Dashboard
+│   ├── 2.png            # Student registration
+│   ├── 3.png            # Student management
+│   ├── 4.png            # Student directory
+│   ├── 5.png            # Course creation
+│   ├── 6.png            # Course management
+│   ├── 7.png            # Course catalog
+│   ├── 8.png            # Course withdrawal
+│   ├── 9.png            # Course registration
+│   ├── 10.png           # Query interface
+│   ├── 11.jpeg          # Database schema
+│   └── 12.jpeg          # ERD diagram
+└── README.md            # Project documentation
+```
+
+### Contributing Guidelines
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
+2. Create feature branch: `git checkout -b feature/new-feature`
 3. Commit changes: `git commit -m 'Add feature description'`
-4. Push to branch: `git push origin feature/your-feature`
-5. Submit a Pull Request with detailed description
+4. Push to branch: `git push origin feature/new-feature`
+5. Submit Pull Request
 
-### Areas for Contribution
-- Additional reporting queries
-- Performance optimization for large datasets
-- Authentication & role-based access control
-- API endpoint development
-- Unit test coverage
+### Development Areas
+- Additional reporting modules
+- Performance optimization
+- User authentication system
+- REST API development
+- Unit test implementation
+
+---
+
+## Project Metrics
+
+### Code Statistics
+- **Lines of Code:** ~470 (Python)
+- **Database Tables:** 5
+- **UI Screens:** 10
+- **Pre-built Queries:** 15
+
+### Database Scale
+- **Departments:** 6 records
+- **Instructors:** 4 records  
+- **Students:** 3+ records
+- **Courses:** 7+ records
+---
+
+## Troubleshooting
+
+### Common Issues
+
+#### Database Connection Error
+```bash
+# Check MySQL service status
+sudo systemctl status mysql  # Linux
+brew services list mysql     # macOS
+# Windows: Check Services app
+```
+
+#### Port Already in Use
+```bash
+# Find process using port 8501
+netstat -ano | findstr :8501  # Windows
+lsof -i :8501                 # macOS/Linux
+
+# Kill process
+taskkill /PID <PID> /F        # Windows
+kill -9 <PID>                 # macOS/Linux
+```
+
+#### Module Import Error
+```bash
+# Reinstall dependencies
+pip install -r requirements.txt --force-reinstall
+```
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Credits
+## Acknowledgments
 
-**Project Team:**
-- Database Architecture & Schema Design
-- Streamlit UI/UX Implementation
-- MySQL Integration & Query Optimization
-
-**Technologies:**
-- [Streamlit](https://streamlit.io/) — Interactive data applications
-- [MySQL](https://www.mysql.com/) — Relational database management
-- [Pandas](https://pandas.pydata.org/) — Data manipulation and analysis
-- [Python](https://www.python.org/) — Backend logic and integration
-
-**Inspired by:** Academic institution management systems and best practices in educational technology.
-
----
-
-## Support
-
-For issues, questions, or feature requests:
-- Open an [Issue](../../issues) on GitHub
-- Review the [Documentation](docs/)
-- Check [FAQ](docs/FAQ.md) for common solutions
+- **Streamlit Team** - Excellent web application framework
+- **MySQL Community** - Robust database management system
+- **Pandas Developers** - Powerful data manipulation library
 
 ---
 
 <div align="center">
 
-## Project Highlights
+## Support & Contact
 
-### Performance & Reliability
-- Transaction-safe operations with InnoDB engine
-- Duplicate enrollment prevention with SQL validation
-- Cascade delete management for data consistency
-- Real-time activity tracking with timestamped records
-
-### User Experience
-- Intuitive tabbed navigation interface
-- Form auto-clearing after successful submission
-- Dropdown-based entity selection
-- Interactive data grid visualization
-- Comprehensive error handling and user feedback
-
-### Enterprise Architecture
-- Normalized relational schema (3NF compliance)
-- Role-based access control capabilities
-- Audit trails with automatic timestamps
-- Scalable multi-department support
-- API-ready database structure
+For questions, issues, or contributions:
+- Email: shaheenmohammedsh@gmail.com
+- Issues: [GitHub Issues](https://github.com/shaheenmohammedsh-ops/University-Management-System/issues)
+- Documentation: [Project Wiki](https://github.com/shaheenmohammedsh-ops/University-Management-System/wiki)
 
 ---
 
-**Made with passion for the academic community**
+**Built with dedication for educational institutions**
 
-[Back to Top](#university-management-system)
+[Back to Top](#-university-management-system)
 
 </div>
