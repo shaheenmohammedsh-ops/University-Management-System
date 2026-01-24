@@ -1086,12 +1086,6 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ---
 
-```
-.
-
-
-```
-
 ---
 
 ## Acknowledgments
@@ -1118,6 +1112,7 @@ For questions, issues, or contributions:
 [Back to Top](#-university-management-system)
 
 </div>
+
 
 
 
