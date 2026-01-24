@@ -1082,7 +1082,7 @@ dir %APPDATA%\streamlit
 
 ## [LICENSE] Terms & Conditions
 
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+This project is licensed under the MIT License. See [LICENSE](./LICENSE.md) for details.
 
 ---
 
@@ -1112,6 +1112,7 @@ For questions, issues, or contributions:
 [Back to Top](#-university-management-system)
 
 </div>
+
 
 
 
